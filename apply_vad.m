@@ -8,10 +8,8 @@
 % set path
 addpath mfiles/
 
-audiodir='../audio/anorexia study/';
-outdir_txt='../pitch/anorexia study/';
-%audiodir='../audio/OCD study/';
-%outdir_txt='../pitch/OCD study/';
+audiodir='/storage/skacprza/github/agh/doktorat/tko-params/';
+outdir_txt='/storage/skacprza/github/agh/doktorat/tko-params/';
 if ~exist(outdir_txt), mkdir(outdir_txt); end
 
 filenames=dir(sprintf('%s/*.wav',audiodir));
@@ -44,7 +42,7 @@ visualize=true;
 for k = 1 : length(filenames)
 
  % read in audio
- [sam,fs_orig]=wavread(fullfile(audiodir,filenames(k).name));
+ [sam,fs_orig]=audioread(fullfile(audiodir,filenames(k).name));
  sam_8k=downsample(sam(:,1),fs_orig/fs);
  
  % [1] extract cochleagram
@@ -79,6 +77,5 @@ for k = 1 : length(filenames)
  if visualize
   imagesc(mvn(gt));axis xy;hold on;
   plot(10*labelsPerFrame,'m','LineWidth',3); zoom xon; hold off
-  keyboard
  end
 end

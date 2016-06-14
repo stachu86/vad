@@ -50,7 +50,7 @@ T=length(sam);
 sam=[0 sam(2:T)-PreEmp*sam(1:T-1)];
 win=hamming(FrameLen);
 xNoWin=sam(ind1(ones(FrameLen,1),:)+ind2(:,ones(1,NbFr)));
-xWin=win(:,ones(1,NbFr)).*xNoWin;
+xWin=(repmat(win,[NbFr,1]).*xNoWin')';
 
 % logMel
 X=fft(xWin,Nfft);

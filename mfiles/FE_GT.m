@@ -39,7 +39,7 @@ T=length(sam);
 sam=[0 sam(2:T)-PreEmp*sam(1:T-1)];
 win=hamming(FrameLen);
 % Fourier Transform
-X=fft(win(:,ones(1,NbFr)).*sam(ind1(ones(FrameLen,1),:)+ind2(:,ones(1,NbFr))),Nfft);
+X=fft(repmat(win,[NbFr,1])'.*sam(ind1(ones(FrameLen,1),:)+ind2(:,ones(1,NbFr))),Nfft);
 X(1,:)=0;
 X=abs(X(1:Nfft/2,:));
 gf=max(tGtMat'*X,Gfloor).^(1/3);

@@ -124,7 +124,7 @@ NbFr=floor( (T-FrameLen+FrameShift)/FrameShift);
 ind1=(1:FrameShift:NbFr*FrameShift)-1;
 ind2=(1:FrameLen)';
 win=hamming(FrameLen);
-xWin=single(win(:,ones(1,NbFr)).*sam(ind1(ones(FrameLen,1),:)+ind2(:,ones(1,NbFr))));
+xWin=single(repmat(win,[NbFr, 1])'.*sam(ind1(ones(FrameLen,1),:)+ind2(:,ones(1,NbFr))));
 % show progress
 if verbose, fprintf('[1/3] pitch estimation .. '); end;
 
